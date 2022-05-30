@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "588921401504",
+    "firebase_url": "https://randtalk-rn-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "randtalk-rn",
+    "storage_bucket": "randtalk-rn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588921401504:android:2703f04ef6964a15c899c5",
+        "android_client_info": {
+          "package_name": "com.randtalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588921401504-rjli14c6ktmmjiojmcqlferu8kia01vh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.randtalk",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "588921401504-3p6j8p6c812ikll54ou00k25rl1svi0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2PVmf3ZGpBPlZpJCHGh-Ts0gwa0bPw_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588921401504-3p6j8p6c812ikll54ou00k25rl1svi0d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

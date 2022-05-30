@@ -1,6 +1,7 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-
+import Home from '../screens/Home/Index';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const Tab = createMaterialBottomTabNavigator();
 const BottomTab = () => {
   return (
@@ -10,30 +11,17 @@ const BottomTab = () => {
       labeled={false}
       barStyle={{
         backgroundColor: '#205375',
-        marginHorizontal: 30,
-        marginBottom: 30,
-        borderRadius: 50,
         justifyContent: 'center',
-        position: 'absolute',
-        height: 50,
-        overflow: 'hidden',
       }}
       screenOptions={{
         headerShown: false,
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({color}) => <Icon name="home" size={20} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="Qrcode"
-        component={Qrcode}
+        component={Home}
         options={{
           tabBarIcon: ({color}) => (
-            <Icon name="qrcode-scan" size={20} color={color} />
+            <Icon name="comments-o" size={25} color={color} />
           ),
         }}
       />
