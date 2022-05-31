@@ -1,13 +1,24 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import database from '@react-native-firebase/database';
+import User from '../../../models/user';
 const ChatGet = () => {
   return (
     <>
       <View style={styles.textList}>
         <View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
+          <TouchableOpacity
+            style={{flex: 1, flexDirection: 'row'}}
+            onPress={() => {
+              const set = User.login({
+                username: 'randiRamadhani',
+                email: 'test@mail.com',
+                password: 'secret',
+              });
+              console.log(set);
+            }}>
             <Text style={styles.title}>Gelut Des</Text>
-          </View>
+          </TouchableOpacity>
           <Text>10.10pm</Text>
         </View>
       </View>

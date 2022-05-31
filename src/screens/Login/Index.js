@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,10 +10,30 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import User from '../../models/user';
+import Local from '../../models/localStorage';
 const screen = Dimensions.get('screen');
+
 const Login = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const buttonLogin = async () => {
+    const result = await User.login({
+      email: email,
+      password: password,
+    });
+    const [dataLocal, setDataLocal] = useState({});
+    if (result.length > 0) {
+      Local.setLocal({email: email, password: password, login: true});
+      navigation.replace('bottom-tab');
+    } else {
+      Alert.alert('login gagal');
+    }
+    useEffect(() => {
+      const res = Local.getLocal('user');
+      res.login ? navigation.replace('bottom-tab') : '';
+    }, []);
+  };
   return (
     <View style={styles.parent}>
       {/* <Image
@@ -40,7 +60,10 @@ const Login = ({navigation}) => {
           placeholder="Password"
           keyboardType="default"
         />
-        <TouchableOpacity testID="button-login" style={styles.btn}>
+        <TouchableOpacity
+          testID="button-login"
+          style={styles.btn}
+          onPress={() => buttonLogin()}>
           <Text style={{color: 'white', fontSize: 20}}>Login</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>

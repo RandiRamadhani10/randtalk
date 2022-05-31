@@ -27,7 +27,7 @@ const Main = ({navigation}) => {
           translucent={true}
         />
         <Stack.Navigator
-          initialRouteName="chat-view"
+          initialRouteName="register"
           screenOptions={{headerShown: false}}>
           <Stack.Screen
             name="bottom-tab"

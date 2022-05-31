@@ -9,11 +9,24 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from 'react-native';
+
+import User from '../../models/user';
+
 const screen = Dimensions.get('screen');
 const Register = ({navigation}) => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const buttonRegister = async () => {
+    const result = await User.register({
+      username: name,
+      email: email,
+      password: password,
+    });
+
+    result ? navigation.navigate('login') : console.log('register gagal');
+  };
   return (
     <View style={styles.parent}>
       {/* <Image
@@ -48,7 +61,10 @@ const Register = ({navigation}) => {
           placeholder="Password"
           keyboardType="default"
         />
-        <TouchableOpacity testID="button-register" style={styles.btn}>
+        <TouchableOpacity
+          testID="button-register"
+          style={styles.btn}
+          onPress={() => buttonRegister()}>
           <Text style={{color: 'white', fontSize: 20}}>Register</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
