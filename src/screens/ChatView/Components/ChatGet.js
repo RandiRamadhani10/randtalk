@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import database from '@react-native-firebase/database';
 import User from '../../../models/user';
-const ChatGet = () => {
+const ChatGet = ({props}) => {
   return (
     <>
       <View style={styles.textList}>
@@ -17,9 +17,8 @@ const ChatGet = () => {
               });
               console.log(set);
             }}>
-            <Text style={styles.title}>Gelut Des</Text>
+            <Text style={styles.title}>{props.msg}</Text>
           </TouchableOpacity>
-          <Text>10.10pm</Text>
         </View>
       </View>
     </>

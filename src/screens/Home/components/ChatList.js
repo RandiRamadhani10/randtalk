@@ -7,9 +7,16 @@ import {
   Dimensions,
 } from 'react-native';
 const ChatList = ({props}) => {
-  const {navigation} = props;
+  const {navigation, data} = props;
+
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('chat-view')}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('chat-view', {
+          idUser: data.id,
+          username: data.username,
+        })
+      }>
       <View style={styles.chatList}>
         <View
           style={{
@@ -18,7 +25,7 @@ const ChatList = ({props}) => {
             backgroundColor: 'red',
             borderRadius: 100,
           }}></View>
-        <Text style={styles.textChat}>Fais</Text>
+        <Text style={styles.textChat}>{data.username}</Text>
       </View>
     </TouchableOpacity>
   );

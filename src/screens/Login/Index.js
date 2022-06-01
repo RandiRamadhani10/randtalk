@@ -11,29 +11,36 @@ import {
   Alert,
 } from 'react-native';
 import User from '../../models/user';
-import Local from '../../models/localStorage';
+import {setLocal, getLocal} from '../../models/localStorage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import FirebaseUser from '../../models/firebaseUser';
 const screen = Dimensions.get('screen');
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [dataLocal, setDataLocal] = useState({login: false});
+
   const buttonLogin = async () => {
-    const result = await User.login({
+    const result = await FirebaseUser.postLogin({
       email: email,
       password: password,
     });
-    const [dataLocal, setDataLocal] = useState({});
+
     if (result.length > 0) {
-      Local.setLocal({email: email, password: password, login: true});
       navigation.replace('bottom-tab');
     } else {
       Alert.alert('login gagal');
     }
-    useEffect(() => {
-      const res = Local.getLocal('user');
-      res.login ? navigation.replace('bottom-tab') : '';
-    }, []);
   };
+  useEffect(() => {
+    getLocal('user').then(value => {
+      setDataLocal(value);
+    });
+  }, []);
+  useEffect(() => {
+    dataLocal.login ? navigation.replace('bottom-tab') : '';
+  }, [dataLocal]);
   return (
     <View style={styles.parent}>
       {/* <Image

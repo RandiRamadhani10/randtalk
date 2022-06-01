@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   ScrollView,
@@ -8,8 +8,24 @@ import {
   Text,
 } from 'react-native';
 import ChatList from './components/ChatList';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Local from '../../models/localStorage';
+import FirebaseUser from '../../models/firebaseUser';
+import {firebase} from '@react-native-firebase/database';
+import {getLocal} from '../../models/localStorage';
+import IdUser from '../../models/data';
 const screen = Dimensions.get('screen');
 const Home = ({navigation}) => {
+  const [user, setUser] = useState({});
+  const [users, setUsers] = useState([]);
+ 
+  useEffect(() => {
+    FirebaseUser.getAllUser(IdUser[0].id).then(value => {
+      setUsers(value);
+    });
+  }, []);
+
   return (
     <>
       <View style={styles.header}>
@@ -17,7 +33,19 @@ const Home = ({navigation}) => {
       </View>
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          <ChatList props={{navigation: navigation, data: []}} />
+          {users.map((data, index) => {
+            return (
+              <>
+                <ChatList
+                  key={index}
+                  props={{
+                    navigation: navigation,
+                    data: {username: data.username, id: data.id},
+                  }}
+                />
+              </>
+            );
+          })}
         </ScrollView>
       </SafeAreaView>
     </>

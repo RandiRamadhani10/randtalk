@@ -1,14 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-const ChatPost = () => {
+const ChatPost = ({props}) => {
   return (
     <>
       <View style={styles.textList}>
         <View>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.title}>Ayo gas</Text>
+            <Text style={styles.title}>{props.msg}</Text>
           </View>
-          <Text>10.20pm</Text>
         </View>
       </View>
     </>

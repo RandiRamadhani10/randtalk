@@ -1,26 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const Local = {
-  setLocal(data) {
-    const storeData = async value => {
-      try {
-        const jsonValue = JSON.stringify(value);
-        await AsyncStorage.setItem('user', value);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    return storeData(data);
-  },
-  getLocal(key) {
-    const getData = async value => {
-      try {
-        const jsonValue = await AsyncStorage.getItem(`${value}`);
-        return jsonValue != null ? JSON.parse(jsonValue) : null;
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    return getData(key);
-  },
+import IdUser from './data';
+const setLocal = async data => {
+  try {
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem('user', jsonValue);
+  } catch (e) {
+    console.log(e);
+  }
 };
-export default Local;
+
+const getLocal = async key => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('user');
+    IdUser.unshift(JSON.parse(jsonValue));
+    return jsonValue != null ? JSON.parse(jsonValue) : {login: false};
+  } catch (e) {
+    console.log(e);
+  }
+};
+export {getLocal, setLocal};
